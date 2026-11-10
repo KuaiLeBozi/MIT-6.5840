@@ -11,13 +11,18 @@ package mr
 // and reply for an RPC.
 //
 
-type ExampleArgs struct {
-	X int
+type AskTaskArgs struct {
+	MapID    int
+	State    int //0 for map start, 1 for  map finished, 2 for reduce finished
+	ReduceID int
 }
 
-type ExampleReply struct {
-	Y int
+type AskTaskReply struct {
+	NReduce  int
+	MapID    int
+	Filename string
+	ReduceID int // -1 for map state, -2 for no free reduce task(should wait), -3 for all task finished(should return)
+	Nmap     int
 }
 
 // Add your RPC definitions here.
-
